@@ -10,12 +10,12 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import { ref, onValue} from "firebase/database";
 import { database } from '../../utils/firebaseConfig';
 import {Flat} from '@alptugidin/react-circular-progress-bar'
-import Modals from '../../utils/Modals';
-import useToggle from '../../hooks/useToggle';
+// import Modals from '../../utils/Modals';
+// import useToggle from '../../hooks/useToggle';
 const ECommerce: React.FC = () => {
   const [datas, setDatas] : any = useState({});
   const [ultra2, setUltra2] : any = useState({})
-  const {on,toggler} = useToggle();
+  // const {on,toggler} = useToggle();
   useEffect(()=>{
     const useRef = ref(database,'hcsr1');
     const useRef2 = ref(database,'hcsr2');
@@ -45,7 +45,7 @@ const ECommerce: React.FC = () => {
       <DefaultLayout>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
       
-        <CardDataStats  title='Organic Composable'>
+        <CardDataStats title='Organic Composable'>
         <i className="fa-solid fa-circle-info"></i>
        
         <div className={`float-end size-4 border-solid border-2 ${datas.value >= 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-600': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
@@ -85,7 +85,7 @@ const ECommerce: React.FC = () => {
         </CardDataStats>
         
      
-        <CardDataStats  title='Organic Non Composable'>
+        <CardDataStats title='Organic Non Composable'>
         <i className="fa-solid fa-circle-info"></i>
         <div className={`float-end size-4 border-solid border-2 ${ultra2.value >= 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-300': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
         <div className="md:size-50">
@@ -120,7 +120,7 @@ const ECommerce: React.FC = () => {
 
         </div>
         </CardDataStats>
-        <CardDataStats  title='Anorganik'>
+        <CardDataStats title='Anorganik'>
         <i className="fa-solid fa-circle-info"></i>
         <div className={`float-end size-4 border-solid border-2 ${datas.value == 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-300': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
         <div className="md:size-50">
