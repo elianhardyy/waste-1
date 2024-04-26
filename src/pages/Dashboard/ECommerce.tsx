@@ -45,7 +45,7 @@ const ECommerce: React.FC = () => {
       <DefaultLayout>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
       
-        <CardDataStats toggler={toggler} title='Organic Composable'>
+        <CardDataStats  title='Organic Composable'>
         <i className="fa-solid fa-circle-info"></i>
        
         <div className={`float-end size-4 border-solid border-2 ${datas.value >= 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-600': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
@@ -85,7 +85,7 @@ const ECommerce: React.FC = () => {
         </CardDataStats>
         
      
-        <CardDataStats toggler={toggler} title='Organic Non Composable'>
+        <CardDataStats  title='Organic Non Composable'>
         <i className="fa-solid fa-circle-info"></i>
         <div className={`float-end size-4 border-solid border-2 ${ultra2.value >= 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-300': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
         <div className="md:size-50">
@@ -120,7 +120,7 @@ const ECommerce: React.FC = () => {
 
         </div>
         </CardDataStats>
-        <CardDataStats toggler={toggler} title='Anorganik'>
+        <CardDataStats  title='Anorganik'>
         <i className="fa-solid fa-circle-info"></i>
         <div className={`float-end size-4 border-solid border-2 ${datas.value == 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-300': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
         <div className="md:size-50">
