@@ -41,7 +41,7 @@ const ECommerce: React.FC = () => {
   return (
     <>
     {/* <Modals/> */}
-    {on && <Modals toggler={toggler}/>}
+    {/* {on && <Modals toggler={toggler}/>} */}
       <DefaultLayout>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
       
