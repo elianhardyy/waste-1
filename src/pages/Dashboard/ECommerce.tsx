@@ -10,12 +10,13 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import { ref, onValue} from "firebase/database";
 import { database } from '../../utils/firebaseConfig';
 import {Flat} from '@alptugidin/react-circular-progress-bar'
-// import Modals from '../../utils/Modals';
-// import useToggle from '../../hooks/useToggle';
+import Modals from '../../utils/Modals';
+import useToggle from '../../hooks/useToggle';
 const ECommerce: React.FC = () => {
   const [datas, setDatas] : any = useState({});
   const [ultra2, setUltra2] : any = useState({})
-  // const {on,toggler} = useToggle();
+  const {on,toggler} = useToggle();
+  const [typeWaste, setTypeWaste] = useState("");
   useEffect(()=>{
     const useRef = ref(database,'hcsr1');
     const useRef2 = ref(database,'hcsr2');
@@ -36,17 +37,18 @@ const ECommerce: React.FC = () => {
         setUltra2(dataRtdb2);
       }
     })
+    // setTypeWaste("metal");
   },[]);
- 
+
   return (
     <>
     {/* <Modals/> */}
-    {/* {on && <Modals toggler={toggler}/>} */}
+    {on && <Modals toggler={toggler} type={typeWaste}/>}
       <DefaultLayout>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-3">
       
-        <CardDataStats title='Organic Composable'>
-        <i className="fa-solid fa-circle-info"></i>
+        <CardDataStats toggler={toggler} title='Organic Composable'>
+        <i className="fa-solid fa-circle-info" onClick={()=>{setTypeWaste("organic")}}></i>
        
         <div className={`float-end size-4 border-solid border-2 ${datas.value >= 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-600': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
         <div className="md:size-50">
@@ -76,7 +78,8 @@ const ECommerce: React.FC = () => {
                 loadingTime: 1000,
                 
                 valueAnimation: true,
-                intersectionEnabled: true
+                intersectionEnabled: true,
+                
               }}
             />
         </div>
@@ -85,8 +88,8 @@ const ECommerce: React.FC = () => {
         </CardDataStats>
         
      
-        <CardDataStats title='Organic Non Composable'>
-        <i className="fa-solid fa-circle-info"></i>
+        <CardDataStats toggler={toggler} title='Organic Non Composable'>
+        <i className="fa-solid fa-circle-info" onClick={()=>{setTypeWaste("inorganic")}}></i>
         <div className={`float-end size-4 border-solid border-2 ${ultra2.value >= 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-300': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
         <div className="md:size-50">
           <Flat  
@@ -120,8 +123,8 @@ const ECommerce: React.FC = () => {
 
         </div>
         </CardDataStats>
-        <CardDataStats title='Anorganik'>
-        <i className="fa-solid fa-circle-info"></i>
+        <CardDataStats toggler={toggler} title='Anorganik'>
+        <i className="fa-solid fa-circle-info" onClick={()=>{setTypeWaste("metal")}}></i>
         <div className={`float-end size-4 border-solid border-2 ${datas.value == 100 ? 'border-red-600 rounded-3xl bg-red-600 shadow-3 shadow-red-300': 'border-green-600 rounded-3xl bg-green-600 shadow-3 shadow-green-300'}`}></div>
         <div className="md:size-50">
           <Flat  

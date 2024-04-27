@@ -1,13 +1,16 @@
+import { onValue, ref, update } from 'firebase/database';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { database } from '../../utils/firebaseConfig';
 
 const DropdownNotification = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
-
+  const [alarm1, setAlarm1]:any = useState({});
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
-
+  const [on, setOn] = useState(false);
+  const [off, setOff] = useState(false);
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!dropdown.current) return;
@@ -32,6 +35,32 @@ const DropdownNotification = () => {
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
+  useEffect(()=>{
+    const useRefAlarm = ref(database,'buzzer1')
+    onValue(useRefAlarm,(snapshot)=>{
+      const alarmRtdb = snapshot.val();
+      if(alarmRtdb != null){
+        setAlarm1(alarmRtdb)
+      }
+    })
+  },[])
+  const handleSubmitChangeON = () => {
+    update(ref(database,`buzzer1`),{
+      value:1
+    })
+    if(alarm1.value==1){
+      setOff(true);
+    }
+  }
+  const handleSubmitChangeOFF = () => {
+    update(ref(database,`buzzer1`),{
+      value:2
+    })
+    if(alarm1.value == 0 || alarm1.value == 2){
+      setOn(true)
+    }
+
+  }
 
   return (
     <li className="relative">
@@ -95,6 +124,10 @@ const DropdownNotification = () => {
 
               <p className="text-xs">12 May, 2025</p>
             </Link>
+            <div className="flex justify-between">
+            <button onClick={handleSubmitChangeON} className={`${alarm1.value == 1 ? 'bg-green-300': 'bg-green-500' } p-2 rounded-md text-white mr-3`}>ON</button>
+            <button onClick={handleSubmitChangeOFF} className='bg-red-500 p-2 rounded-md text-white'>OFF</button>
+            </div>
           </li>
           <li>
             <Link
