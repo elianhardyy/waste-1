@@ -28,8 +28,8 @@ const Modals:React.FC|any = (props:any) => {
                 
                 <div className="flex justify-between px-6 py-1">
                     <div className="font-bold text-xl">{waste?.title}</div>
-                    <img src={waste?.url} alt={waste?.title} />
                 </div>
+                    <img className='float-right' src={waste?.url} alt={waste?.title} />
                 <div className="flex justify-around items-center px-2 py-1">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni est quidem ad numquam repudiandae distinctio eveniet aperiam. Quis vel optio unde ex deleniti, et illum! Quisquam fugiat consequatur optio. Quia nam quas voluptas ratione natus aspernatur facere facilis dignissimos non minus! Delectus quibusdam ducimus ut laboriosam accusamus! Repudiandae, labore numquam! Fuga dolorum, maxime illum quas magni illo repellendus delectus deleniti, totam cupiditate mollitia deserunt, perspiciatis velit nesciunt! Corporis natus ullam laboriosam veritatis. Natus quae eius maiores libero voluptatem impedit soluta corrupti, eveniet quia reiciendis. Reiciendis nemo esse nesciunt exercitationem voluptatem aliquid animi numquam non, ducimus, atque, magni dolorem sed facere.
                 </div>
